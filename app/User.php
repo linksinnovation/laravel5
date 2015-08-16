@@ -2,23 +2,34 @@
 
 namespace App;
 
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-
-class User extends Model
+class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-    protected $table = 'users';
-
-    public function phone()
-    {
-    	return $this->hasOne('App\Phone');
-    }
+    use Authenticatable, CanResetPassword;
 
     /**
-     * The roles that belong to the user.
+     * The database table used by the model.
+     *
+     * @var string
      */
-    public function roles()
-    {
-        return $this->belongsToMany('App\Role');
-    }
+    protected $table = 'users';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'email', 'password'];
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['password', 'remember_token'];
 }

@@ -6,9 +6,6 @@ use Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
 class Handler extends ExceptionHandler
 {
     /**
@@ -42,34 +39,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-/*        if ($e instanceof ModelNotFoundException)
-        {
-            //abort(901);
-            return \Response::view('errors.901');
-        }
-
-        if($this->isHttpException($e))
-        {
-            switch ($e->getStatusCode()) {
-                // not found
-                case 404:
-                     return \Response::view('errors.404');
-                break;
-                // internal error
-                case 500:
-                    return \Response::view('errors.500');
-                break;
- 
-                default:
-                    return $this->renderHttpException($e);
-                break;
-            }
-        }
-        else
-        {
-            return parent::render($request, $e);
-        }*/
-
         return parent::render($request, $e);
     }
 }
