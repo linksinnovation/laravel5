@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <h3 class="page-header">{{ $title }}</h3>
+        <h3 class="page-header">Subjects Dashboard</h3>
     </div>
 </div>
 
@@ -16,39 +16,42 @@
                 Links Innovatoin Co., Ltd
             </div>
             
+            @if(Session::has('success'))
+            	<div class="alert alert-success">
+            		{{ Session::get('success') }}
+            	</div>
+            @endif
+
+            @if(Session::has('errors'))
+            	<div class="alert alert-error">
+            		{{ Session::get('errors') }}
+            	</div>
+            @endif
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th style="width:40px;">#</th>
-                                <th>
-                                    Subject
-                                </th>
+                                <th>Title</th>
                                 <th>Type</th>
-                                <th>Vote</th>
                                 <th style="width:100px;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($data->count() > 0)
-                            @foreach($data as $item)
-                                <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>
-                                         <a href="{{ URL::to('section/dashboard/'.$item->id) }}">
-                                        {{ $item->title }}
-                                        </a>
-                                    </td>
-                                    <td>{{ $item->type }}</td>
-                                    <td>{{ $item->vote }}</td>
-                                    <td>
-                                    	<a href="{{ URL::to('subject/edit/'.$item->id) }}">Edit</a> || 
-                                    	<a href="{{ URL::to('subject/delete/'.$item->id) }}">Edit</a> 
-                                    </td>
-                                </tr>
+                        	@if ($data->count() > 0)
+                        	@foreach($data as $item)
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->title }}</td>
+                                <td>{{ $item->type }}</td>
+                                <td>
+                                	<a href="{{ URL::to('subject/edit/'.$item->id) }}">Edit</a> || 
+                                	<a href="{{ URL::to('subject/delete/'.$item->id) }}">Delete</a> 
+                                </td>
+                            </tr>
                             @endforeach
-                            @endif
+                        	@endif
                         </tbody>
                     </table>
                 </div>

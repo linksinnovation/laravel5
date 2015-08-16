@@ -15,5 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/subject', 'SubjectController@getDashboard');
-Route::controller('subject', 'SubjectController');
+//Route::get('/subject', 'SubjectsController@getDashboard');
+Route::controller('/subject', 'SubjectsController');

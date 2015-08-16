@@ -27,27 +27,28 @@
                     <div class="col-lg-8">
 
                         <h3>Links Innovation Co., Ltd</h3>
-                        <form role="form" name="form-subject" action="{{ URL::to('/subject/store') }}" method="POST">
+                        <form role="form" name="form-subject" action="{{ URL::to('/subject/update/'.$data->id) }}" method="POST">
                             <div class="form-group">
                                 <label>Title</label>
-                                <input class="form-control" name="title" value="" placeholder="Enter something">
+                                <input class="form-control" name="title" value="{{ old('title', $data->title) }}" placeholder="Enter something">
                             </div>
 
                             <div class="form-group">
                                 <label>Type</label>
-                                <input class="form-control" name="type" value=""  placeholder="Enter something">
+                                <input class="form-control" name="type" value="{{ old('type', $data->type) }}"  placeholder="Enter something">
                             </div>
 
                             <div class="form-group">
                                 <label>Vote</label>
-                                <input class="form-control" name="vote" value=""  placeholder="Enter something">
+                                <input class="form-control" name="vote" value="{{ old('vote', $data->vote) }}"  placeholder="Enter something">
                             </div>
 
                             <div class="form-group">
                                 <label>Desctiption</label>
-                                <textarea class="form-control" name="description" rows="5"></textarea>
+                                <textarea class="form-control" name="description" rows="5">{{ old('description', $data->description) }}</textarea>
                             </div>
 
+                            <input type="hidden" name="_method" value="PUT" >
                             <input type="hidden" name="_token" value="{{ Session::token() }}" />
 
                             <button type="submit" class="btn btn-default">Submit Button</button>
